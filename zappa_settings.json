@@ -1,0 +1,12 @@
+{
+    "dev": {
+        "aws_region": "ap-northeast-2",
+        "django_settings": "config.settings",
+        "profile_name": "default",
+        "project_name": "FIXME PROJECT NAME",
+        "runtime": "python3.8",
+        "s3_bucket": "FIXME S3 BUCKET",
+	"domain": "FIXME CUSTOM DOMAIN",
+	"certificate_arn":"FIXME AWS ACM ARN"
+    }
+}
