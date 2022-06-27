@@ -1,11 +1,10 @@
-from statistics import mode
 from model_utils.models import TimeStampedModel as BaseTimeStampedModel
 from django.utils import timezone
 from django.db import models
-from django.db.models.manager import Manager
 
 
 class TimeStampedModel(BaseTimeStampedModel):
+
     @property
     def localized_created(self):
         return timezone.localtime(self.created)
@@ -19,6 +18,7 @@ class TimeStampedModel(BaseTimeStampedModel):
 
 
 class IsActiveModel(models.Model):
+    
     class Meta:
         abstract = True
 

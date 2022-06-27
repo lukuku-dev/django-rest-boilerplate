@@ -5,17 +5,16 @@ from rest_framework import permissions
 
 from django.views import View
 from django.http import JsonResponse
-from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 
 
-def hello_world(request):
+def hello_world_view(request):
     data = {'message': 'hello world'}
 
     return JsonResponse(data)
 
-
 urlpatterns = [
-    path('', hello_world),
+    path('', hello_world_view),
     path('', include('boards.urls')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),

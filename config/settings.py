@@ -1,12 +1,11 @@
-
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# con SENTRY
 
 SECRET_KEY = 'FIXME DJANGO SECRET KEY'
 DEBUG = True
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -17,7 +16,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'drf_spectacular',
-
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -26,13 +24,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'django_extensions',
-
     'storages',
     'users',
     'boards',
 ]
-
-
 
 MIDDLEWARE = [
     'config.middleware.CorsMiddleware',
@@ -43,6 +38,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     "corsheaders.middleware.CorsPostCsrfMiddleware",
+]
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -65,7 +64,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -74,8 +72,6 @@ DATABASES = {
         "PASSWORD": "FXIME DB PASSWORD",
         "HOST": 'FIXME DB HOST',
         "PORT": '5432'
-
-        
     }
 }
 
@@ -94,57 +90,66 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
-LANGUAGE_CODE = 'ko-kr'
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
 USE_TZ = False
-
-
 
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-AWS_STORAGE_BUCKET_NAME="FIXME BUCKET NAME"
-AWS_S3_ACCESS_KEY_ID="FIXME ACCESS KEY"
-AWS_S3_SECRET_ACCESS_KEY="FIXME SECRET KEY"
+AWS_STORAGE_BUCKET_NAME = "FIXME BUCKET NAME"
+AWS_S3_ACCESS_KEY_ID = "FIXME ACCESS KEY"
+AWS_S3_SECRET_ACCESS_KEY = "FIXME SECRET KEY"
 
-
-AWS_S3_SIGNATURE_VERSION="s3v4"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = 'users.User'
 
-
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'config.pagination.CustomPagination',
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
-   'DEFAULT_RENDERER_CLASSES': [
+    'DEFAULT_RENDERER_CLASSES': [
         'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
         'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
     ],
-
     'DEFAULT_PARSER_CLASSES': [
         'djangorestframework_camel_case.parser.CamelCaseFormParser',
         'djangorestframework_camel_case.parser.CamelCaseMultiPartParser',
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
     ],
+    'JSON_UNDERSCOREIZE': {
+        'no_underscore_before_number': True,
+    },
 }
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
-    'DESCRIPTION': 'Your project description',
+    'TITLE': 'Panda Django 4.0 REST SERVER API',
+    'DESCRIPTION': '🔒authorization -> put token key on header -> {Authorization: Token {key}}',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+    'SCHEMA_PATH_PREFIX': '/api',
+    "PARSER_WHITELIST": ["rest_framework.parsers.JSONParser"],
+    "CAMELIZE_NAMES": True,
+    'POSTPROCESSING_HOOKS': [
+        'drf_spectacular.contrib.djangorestframework_camel_case.camelize_serializer_fields'
+    ],
 }
 
 SITE_ID = 1
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "users.serializers.CreateUserSerializer"
+}
