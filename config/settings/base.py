@@ -1,6 +1,7 @@
 from pathlib import Path
+import os
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # con SENTRY
 
@@ -18,15 +19,8 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'rest_framework',
     'rest_framework.authtoken',
-    'dj_rest_auth',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
     'django_extensions',
-    'storages',
     'users',
-    'boards',
 ]
 
 MIDDLEWARE = [
@@ -66,12 +60,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': "FIXME DB NAME",
-        'USER': "FIXME DB USER",
-        "PASSWORD": "FXIME DB PASSWORD",
-        "HOST": 'FIXME DB HOST',
-        "PORT": '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 

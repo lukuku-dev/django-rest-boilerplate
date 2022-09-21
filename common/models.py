@@ -16,9 +16,7 @@ class TimeStampedModel(BaseTimeStampedModel):
     class Meta:
         abstract = True
 
-
 class IsActiveModel(models.Model):
-    
     class Meta:
         abstract = True
 
