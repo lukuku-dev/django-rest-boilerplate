@@ -1,9 +1,43 @@
-- python 3.8
-- django + zappa + grahpql(grahpene)
-- search FIXME and fill the variables
 
-- pip install -r requirements.txt
-- python manage.py makemigrations boards users
-- python manage.py
+# Django Boilerplate
+This boilier plate includes all of the basic features that you need to start a new project. It includes the following features:
+- User Registration
+- User Login
+- User Logout
+- Swagger Documentation
+- Zappa Deployment settings (AWS Lambda)
 
-s3 permission to public
+## Libraries Used
+- Django 3.1.7
+- Python 3.8
+- Django Rest Framework
+
+## Installation
+```bash
+# Clone the repo
+git clone https://github.com/lukuku-dev/django-rest-boilerplate.git
+# Change directory
+cd django-rest-boilerplate
+# Create a virtual environment
+# Please use pyenv here, if you want to attach this code with aws-lambda
+# Install the requirements
+pip install -r requirements.txt
+# Run the migrations
+python manage.py migrate
+# Create a superuser
+python manage.py createsuperuser
+# Run the server
+python manage.py runserver
+```
+# Customization
+1. search `FIXME` and fill the variables
+
+## Deployment
+1. Create a new AWS account
+2. Create a new IAM user
+3. Create a new S3 bucket
+4. Create a new Lambda function
+5. Create a new API Gateway
+6. Set aws credentials in your local machine
+7. Set the variables in `zappa_settings.json`
+8. Run `zappa deploy dev`
