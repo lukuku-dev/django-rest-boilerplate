@@ -1,5 +1,21 @@
+
 from pathlib import Path
+import environ
 import os
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+# Take environment variables from .env file
+env_path = BASE_DIR = Path(__file__).resolve().parent.parent.parent
+environ.Env.read_env(os.path.join(env_path, '.env'))
+BASE_DIR = Path(__file__).resolve().parent.parent
+# Adding django secret key
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+DEBUG = True
+
+PROJECT_ROOT = os.path.normpath(os.path.dirname(__file__))
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -60,8 +76,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('SQL_DBNAME'),
+        'USER': env('SQL_USERNAME'),
+        "PASSWORD": env('SQL_PASSWORD'),
+        "HOST": env('SQL_HOSTNAME'),
+        "PORT": env('SQL_PORT')
+
+
     }
 }
 

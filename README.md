@@ -7,10 +7,16 @@ This boilier plate includes all of the basic features that you need to start a n
 - Swagger Documentation
 - Zappa Deployment settings (AWS Lambda)
 
+
 ## Libraries Used
 - Django 3.1.7
 - Python 3.8
 - Django Rest Framework
+
+## Generate Django Secret
+```bash
+python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
 
 ## Installation
 ```bash
