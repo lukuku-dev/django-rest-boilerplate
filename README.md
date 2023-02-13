@@ -28,6 +28,9 @@ cd django-rest-boilerplate
 # Please use pyenv here, if you want to attach this code with aws-lambda
 # Install the requirements
 pip install -r requirements.txt
+# rename .env.example to .env
+# Fill the variables
+
 # Run the migrations
 python manage.py migrate
 # Create a superuser
