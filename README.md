@@ -7,10 +7,16 @@ This boilier plate includes all of the basic features that you need to start a n
 - Swagger Documentation
 - Zappa Deployment settings (AWS Lambda)
 
+
 ## Libraries Used
 - Django 3.1.7
 - Python 3.8
 - Django Rest Framework
+
+## Generate Django Secret
+```bash
+python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
 
 ## Installation
 ```bash
@@ -22,6 +28,9 @@ cd django-rest-boilerplate
 # Please use pyenv here, if you want to attach this code with aws-lambda
 # Install the requirements
 pip install -r requirements.txt
+# rename .env.example to .env
+# Fill the variables
+
 # Run the migrations
 python manage.py migrate
 # Create a superuser
