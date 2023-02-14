@@ -24,13 +24,19 @@ python -c 'from django.core.management.utils import get_random_secret_key; print
 git clone https://github.com/lukuku-dev/django-rest-boilerplate.git
 # Change directory
 cd django-rest-boilerplate
+# See available pyton versions
+pyenv install --list
+# Install the python version
+pyenv install 3.9.13
 # Create a virtual environment
+pyenv virtualenv 3.9.13 <env-name>
+# Activate the virtual environment
+pyenv activate <env-name>
 # Please use pyenv here, if you want to attach this code with aws-lambda
 # Install the requirements
 pip install -r requirements.txt
 # rename .env.example to .env
 # Fill the variables
-
 # Run the migrations
 python manage.py migrate
 # Create a superuser
