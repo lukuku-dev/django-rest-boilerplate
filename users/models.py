@@ -4,3 +4,4 @@ from common.models import TimeStampedModel
 
 class User(TimeStampedModel, AbstractUser):
     pass
+    
