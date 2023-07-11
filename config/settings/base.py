@@ -109,8 +109,14 @@ USE_TZ = False
 
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+STORAGES = {
+    "default": {
+        "BACKEND": 'storages.backends.s3boto3.S3Boto3Storage',
+    },
+    "staticfiles": {
+        "BACKEND": 'storages.backends.s3boto3.S3StaticStorage',
+    },
+}
 
 AWS_STORAGE_BUCKET_NAME = "FIXME BUCKET NAME"
 AWS_S3_ACCESS_KEY_ID = "FIXME ACCESS KEY"
