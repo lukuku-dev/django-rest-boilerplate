@@ -9,7 +9,7 @@ This boilier plate includes all of the basic features that you need to start a n
 
 
 ## Libraries Used
-- Django 3.1.7
+- Django 4.2.2
 - Python 3.10.07
 - Django Rest Framework
 
