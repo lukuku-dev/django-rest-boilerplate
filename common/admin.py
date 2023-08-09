@@ -34,10 +34,11 @@ class ModelAdmin(admin.ModelAdmin):
 
         if list_display == ('__str__', ):
             list_display = [field.name for field in self.model._meta.get_fields() if not self.check_related_field(field)]
-            for field_name in ['created', 'modified']:
-                if field_name in list_display:
-                    list_display.remove(field_name)
-                    list_display.append(field_name)
+
+            # reorder timing field
+            end_fields = [field for field in ['created', 'modified'] if field in list_display]
+            list_display = [field for field in list_display if field not in end_fields]
+            list_display.extend(end_fields)
 
         if hasattr(self, 'additional_list_display'):
             list_display.extend(self.additional_list_display)
