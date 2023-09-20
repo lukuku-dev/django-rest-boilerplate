@@ -1,4 +1,4 @@
-from base import *
+from .base import *
 import os
 
 """This is the test settings file. It is used only for testing purposes.
