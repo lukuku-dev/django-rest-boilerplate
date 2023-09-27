@@ -3,4 +3,4 @@ class ReadWriteRouter:
         return 'read'
 
     def db_for_write(self, model, **hints):
-        return 'write'
+        return 'default'
