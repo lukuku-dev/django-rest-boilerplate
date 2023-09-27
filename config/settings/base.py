@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # con SENTRY
 
 SECRET_KEY = env('DJANGO_SECRET_KEY')
-DEBUG = True
+DEBUG = False
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -80,10 +80,16 @@ DATABASES = {
         'NAME': env('SQL_DBNAME'),
         'USER': env('SQL_USERNAME'),
         "PASSWORD": env('SQL_PASSWORD'),
-        "HOST": env('SQL_HOSTNAME'),
+        "HOST": env('SQL_WRITE_HOST'),
         "PORT": env('SQL_PORT')
-
-
+    },
+    'read': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('SQL_DBNAME'),
+        'USER': env('SQL_USERNAME'),
+        "PASSWORD": env('SQL_PASSWORD'),
+        "HOST": env('SQL_READ_HOST'),
+        "PORT": env('SQL_PORT')
     }
 }
 
@@ -171,3 +177,5 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 REST_AUTH_REGISTER_SERIALIZERS = {
     "REGISTER_SERIALIZER": "users.serializers.CreateUserSerializer"
 }
+
+DATABASE_ROUTERS = ['config.routers.ReadWriteRouter']
