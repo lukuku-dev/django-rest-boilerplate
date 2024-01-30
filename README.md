@@ -55,4 +55,5 @@ python manage.py runserver
 5. Create a new API Gateway
 6. Set aws credentials in your local machine
 7. Set the variables in `zappa_settings.json`
-8. Run `zappa deploy dev`
+8. Run `zappa certify`
+9. Run `zappa deploy dev`
