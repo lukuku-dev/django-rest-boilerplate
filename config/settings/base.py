@@ -113,6 +113,9 @@ TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
 USE_TZ = False
 
+# URL 끝에 슬래시(/)를 자동으로 추가하지 않음
+APPEND_SLASH = False
+
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STORAGES = {
