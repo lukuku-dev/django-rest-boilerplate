@@ -35,7 +35,8 @@ def get_kakao_user_info(access_token):
         
 def social_login_process(code):
     token_response = get_kakao_token(code)
+    print(f"token_response: {token_response}")
     access_token = token_response['access_token']
     user_response = get_kakao_user_info(access_token)
-    
+    print(f"user_response: {user_response}")
     return user_response
